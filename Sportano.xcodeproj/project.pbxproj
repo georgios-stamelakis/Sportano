@@ -12,6 +12,9 @@
 		0DD5A3A92AB4712800917C85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD5A3A72AB4712800917C85 /* Main.storyboard */; };
 		0DD5A3AB2AB4712900917C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DD5A3AA2AB4712900917C85 /* Assets.xcassets */; };
 		0DD5A3AE2AB4712900917C85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD5A3AC2AB4712900917C85 /* LaunchScreen.storyboard */; };
+		0DD5A3B92AB4766000917C85 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD5A3B82AB4766000917C85 /* EventModel.swift */; };
+		0DD5A3BB2AB4796100917C85 /* SportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD5A3BA2AB4796100917C85 /* SportModel.swift */; };
+		0DD5A3BE2AB47DEE00917C85 /* SportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD5A3BD2AB47DEE00917C85 /* SportViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		0DD5A3AA2AB4712900917C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DD5A3AD2AB4712900917C85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DD5A3AF2AB4712900917C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0DD5A3B82AB4766000917C85 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		0DD5A3BA2AB4796100917C85 /* SportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportModel.swift; sourceTree = "<group>"; };
+		0DD5A3BD2AB47DEE00917C85 /* SportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,41 @@
 		0DD5A3A02AB4712800917C85 /* Sportano */ = {
 			isa = PBXGroup;
 			children = (
+				0DD5A3B62AB4761D00917C85 /* View Model */,
+				0DD5A3B72AB4763300917C85 /* Model */,
+				0DD5A3B52AB4760300917C85 /* Controller */,
 				0DD5A3A12AB4712800917C85 /* AppDelegate.swift */,
-				0DD5A3A52AB4712800917C85 /* ViewController.swift */,
 				0DD5A3A72AB4712800917C85 /* Main.storyboard */,
 				0DD5A3AA2AB4712900917C85 /* Assets.xcassets */,
 				0DD5A3AC2AB4712900917C85 /* LaunchScreen.storyboard */,
 				0DD5A3AF2AB4712900917C85 /* Info.plist */,
 			);
 			path = Sportano;
+			sourceTree = "<group>";
+		};
+		0DD5A3B52AB4760300917C85 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0DD5A3A52AB4712800917C85 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0DD5A3B62AB4761D00917C85 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				0DD5A3BD2AB47DEE00917C85 /* SportViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		0DD5A3B72AB4763300917C85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0DD5A3B82AB4766000917C85 /* EventModel.swift */,
+				0DD5A3BA2AB4796100917C85 /* SportModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DD5A3BB2AB4796100917C85 /* SportModel.swift in Sources */,
+				0DD5A3BE2AB47DEE00917C85 /* SportViewModel.swift in Sources */,
 				0DD5A3A62AB4712800917C85 /* ViewController.swift in Sources */,
+				0DD5A3B92AB4766000917C85 /* EventModel.swift in Sources */,
 				0DD5A3A22AB4712800917C85 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
