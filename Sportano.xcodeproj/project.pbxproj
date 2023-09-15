@@ -60,14 +60,14 @@
 		0DD5A3A02AB4712800917C85 /* Sportano */ = {
 			isa = PBXGroup;
 			children = (
-				0DD5A3B62AB4761D00917C85 /* View Model */,
-				0DD5A3B72AB4763300917C85 /* Model */,
-				0DD5A3B52AB4760300917C85 /* Controller */,
 				0DD5A3A12AB4712800917C85 /* AppDelegate.swift */,
 				0DD5A3A72AB4712800917C85 /* Main.storyboard */,
 				0DD5A3AA2AB4712900917C85 /* Assets.xcassets */,
 				0DD5A3AC2AB4712900917C85 /* LaunchScreen.storyboard */,
 				0DD5A3AF2AB4712900917C85 /* Info.plist */,
+				0DD5A3B62AB4761D00917C85 /* View Model */,
+				0DD5A3B72AB4763300917C85 /* Model */,
+				0DD5A3B52AB4760300917C85 /* Controller */,
 			);
 			path = Sportano;
 			sourceTree = "<group>";

@@ -18,3 +18,5 @@ class SportModel: Decodable {
         case events = "e"
     }
 }
+
+typealias DataModel = [SportModel]
