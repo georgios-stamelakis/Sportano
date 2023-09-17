@@ -11,7 +11,30 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "HorizontalItemCollectionViewCell"
 
-    var dataModel: EventModel?
+    var eventData: EventModel? {
+        didSet {
+            print("GIORGOS COLLECTION SET")
+
+            guard var names = eventData?.eventName.components(separatedBy: " - ") else { return }
+            //        titleLabel.text =
+            while names.count < 2 {
+                names.append("")
+            }
+
+            // FIXME: 1 line for each name for titleLabel.text
+            titleLabel.numberOfLines = 2
+            titleLabel.lineBreakMode = .byTruncatingTail
+            titleLabel.text = names.joined(separator: "\n")
+
+            // FIXME: Change timeLabel.text to time
+            if let sportID = eventData?.sportId {
+                timeLabel.text = sportID
+            }
+            //        if let time = eventData?.eventTime {
+            //            timeLabel.text = String(time)
+            //        }
+        }
+    }
 
     var titleLabel: UILabel!
     var timeLabel: UILabel!
@@ -97,34 +120,14 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bindData(_ data: EventModel?) {
-        self.dataModel = data
-
-        print("GIORGOS COLLECTION SET")
-
-        guard var names = dataModel?.eventName.components(separatedBy: " - ") else { return }
-//        titleLabel.text =
-        while names.count < 2 {
-            names.append("")
-        }
-
-        // FIXME: 1 line for each name for titleLabel.text
-        titleLabel.numberOfLines = 2
-        titleLabel.lineBreakMode = .byTruncatingTail
-        titleLabel.text = names.joined(separator: "\n")
-
-        // FIXME: Change timeLabel.text to time
-        if let sportID = dataModel?.sportId {
-            timeLabel.text = sportID
-        }
-//        if let time = dataModel?.eventTime {
-//            timeLabel.text = String(time)
-//        }
-    }
-
     @objc func buttonTapped() {
         print("Button is \(favButton.isEnabled)")
         favButton.isSelected.toggle()
     }
+
+    deinit {
+        print("DESTRUCTION: Collection View Cell")
+    }
+
 
 }

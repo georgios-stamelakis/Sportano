@@ -19,8 +19,13 @@ class TableCollectionViewCell: UITableViewCell {
     var sportData: SportModel? {
         didSet {
             headerLabel.text = sportData?.sportName
+            // TODO: Move update from here so that its called only once per collectionView
+            updateDataSource()
         }
     }
+
+    // TODO: Move this to ViewController if possible
+    private var dataSource : EventsCollectionViewDataSource!
 
 //    var isExpanded = false
 
@@ -53,36 +58,32 @@ class TableCollectionViewCell: UITableViewCell {
 
         // Set the delegate and dataSource
         collectionView.delegate = self
-        collectionView.dataSource = self
+//        collectionView.dataSource = dataSource
 
         // Add the header view and collection view to the cell's content view
         contentView.addSubview(headerView)
         headerView.addSubview(headerLabel)
         contentView.addSubview(collectionView)
 
-        // Configure constraints for the header view
         NSLayoutConstraint.activate([
+            // Configure constraints for the header view
             headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 40) // Set the desired height
-        ])
+            headerView.heightAnchor.constraint(equalToConstant: 40), // Set the desired height for HeaderView
 
-        // Configure constraints for the header label
-        NSLayoutConstraint.activate([
+            // Configure constraints for the header label
             headerLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
             headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
             headerLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-            headerLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
-        ])
+            headerLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
 
-        // Configure constraints for the collection view
-        NSLayoutConstraint.activate([
+            // Configure constraints for the collection view
             collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 180)
+            collectionView.heightAnchor.constraint(equalToConstant: 180) // Set height for the CollectionView
         ])
     }
 
@@ -90,31 +91,25 @@ class TableCollectionViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-}
+    func updateDataSource() {
+        // TODO: Define what the identifier might be here
+        guard let events = sportData?.events else {
+            print("ERROR events is NIL")
+            return
+        }
+        self.dataSource = EventsCollectionViewDataSource(cellIdentifier: HorizontalItemCollectionViewCell.identifier, items: events, configureCell: { (cell, eventData) in
+            cell.eventData = eventData
+        })
 
-
-// UICollectionViewDataSource methods
-
-extension TableCollectionViewCell: UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sportData?.events.count ?? 0 // Return the number of items in the collection view
+        DispatchQueue.main.async {
+            self.collectionView.dataSource = self.dataSource
+            self.collectionView.reloadData()
+        }
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalItemCollectionViewCell.identifier, for: indexPath) as! HorizontalItemCollectionViewCell
-
-        print("Created collection view item for sport \(sportData?.sportName) - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item)")
-
-        print("GIORGOS COLLECTION GET 2")
-
-
-        let myData = sportData?.events[indexPath.row]
-        cell.bindData(sportData?.events[indexPath.row])
-
-        return cell
+    deinit {
+        print("DESTRUCTION: TableViewCell")
     }
-
 
 }
 
@@ -130,6 +125,16 @@ extension TableCollectionViewCell: UICollectionViewDelegateFlowLayout {
 
         collectionView.deselectItem(at: indexPath, animated: true)
     }
+
+    //// UICollectionViewDelegateFlowLayout methods
+    //
+    //func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    //    return 1
+    //}
+    //
+    //func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    //    return 1
+    //}
 
 }
 
