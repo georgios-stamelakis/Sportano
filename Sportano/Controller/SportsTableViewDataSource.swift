@@ -31,7 +31,7 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
 
         print("GIORGOS TABLE GET 2")
 
-        let item = self.items[indexPath.row]
+        let item = items[indexPath.row]
         self.configureCell(cell, item)
 
         return cell
@@ -58,3 +58,20 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
 //    }
 //
 //}
+
+extension SportsTableViewDataSource: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("User selected table at row:\(indexPath.row + 1) section:\(indexPath.section + 1) item: \(indexPath.item + 1)")
+
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        // FIXME: Remove this if not needed
+
+        self.items[indexPath.row].isCollapsed.toggle()
+//        tableView.reloadRows(at: [indexPath], with: .fade)
+        
+        tableView.reloadData()
+    }
+
+}

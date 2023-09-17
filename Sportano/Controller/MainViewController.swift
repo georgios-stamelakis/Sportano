@@ -43,6 +43,7 @@ class MainViewController: UIViewController {
 
         DispatchQueue.main.async {
             self.tableView.dataSource = self.dataSource
+            self.tableView.delegate = self.dataSource
             self.tableView.reloadData()
         }
     }
@@ -56,26 +57,14 @@ class MainViewController: UIViewController {
 
         self.tableView.frame = view.bounds
 //        self.tableView.dataSource = self
-        self.tableView.delegate = self
+//        self.tableView.delegate = dataSource
+        self.tableView.estimatedRowHeight = 180
+        self.tableView.rowHeight = UITableView.automaticDimension
 
         // Register the custom table view cell
         self.tableView.register(TableCollectionViewCell.self, forCellReuseIdentifier: TableCollectionViewCell.identifier)
 
         view.addSubview(self.tableView)
-    }
-
-}
-
-
-extension MainViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("User selected table at row:\(indexPath.row) section:\(indexPath.section) item: \(indexPath.item)")
-
-        tableView.deselectRow(at: indexPath, animated: true)
-
-        // FIXME: Remove this if not needed
-        self.tableView.reloadData()
     }
 
 }

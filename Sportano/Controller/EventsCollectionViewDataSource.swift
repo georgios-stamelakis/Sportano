@@ -30,7 +30,7 @@ class EventsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
         print("GIORGOS COLLECTION GET 2")
 
-        let item = self.items[indexPath.item]
+        let item = items[indexPath.item]
         self.configureCell(cell, item)
 
         return cell

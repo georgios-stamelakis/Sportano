@@ -12,6 +12,8 @@ struct SportModel: Decodable {
     let sportName: String
     let events: [EventModel]
 
+    var isCollapsed = true
+
     enum CodingKeys: String, CodingKey {
         case sportId = "i"
         case sportName = "d"
