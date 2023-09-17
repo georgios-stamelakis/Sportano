@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SportModel: Decodable {
+struct SportModel: Decodable {
     let sportId: String
     let sportName: String
     let events: [EventModel]
