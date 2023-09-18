@@ -37,51 +37,22 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! TableCollectionViewCell
 
-
-            print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(String(describing: cell.sportData?.sportName))")
-
-            print("GIORGOS TABLE GET 2")
-
             let item = items[indexPath.section]
             self.configureCell(cell, item)
 
             return cell
 
         default:
-            print("ERROR out of bounds - CELL not created")
+            print("ERROR out of bounds - Simple Cell Created")
             return UITableViewCell()
 
         }
     }
 }
 
-
-
-// FROM VIEW CONTROLLER
-//{
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: TableCollectionViewCell.identifier) as! TableCollectionViewCell
-//
-//        print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(sportsViewModel.sportsData[indexPath.row].sportName)")
-//
-//        print("GIORGOS TABLE GET 2")
-//
-//        let myData = sportsViewModel.sportsData[indexPath.row]
-//        cell.bindData(sportsViewModel.sportsData?[indexPath.row])
-//
-//
-//        return cell
-//    }
-//
-//}
-
 extension SportsTableViewDataSource: ExpyTableViewDataSource {
     func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifier) as! SportHeaderViewCell
-
-//        print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(String(describing: cell.sportData?.sportName))")
-        print("GIORGOS TABLE GET 2")
 
         let item = items[section]
         self.configureHeaderCell(cell, item)
@@ -94,41 +65,17 @@ extension SportsTableViewDataSource: ExpyTableViewDataSource {
     }
 }
 
-
 extension SportsTableViewDataSource: ExpyTableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         tableView.deselectRow(at: indexPath, animated: true)
-
-        print("User selected table at row:\(indexPath.row + 1) section:\(indexPath.section + 1) item: \(indexPath.item + 1)")
-
-        // FIXME: Remove this if not needed
-
-//        self.items[indexPath.row].isCollapsed.toggle()
-
-//        tableView.reloadRows(at: [indexPath], with: .fade)
-//        tableView.reloadData()
     }
 
     func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int) {
 
-        switch state {
-        case .willExpand:
-            print("WILL EXPAND")
-
-        case .willCollapse:
-            print("WILL COLLAPSE")
-
-        case .didExpand:
-            print("DID EXPAND")
-
-        case .didCollapse:
-            print("DID COLLAPSE")
-        }
     }
 
-    // FIXME: This does not change the spacing for sections...
     // Acts as spacing to the top of the section
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         // Return the desired height for the section header

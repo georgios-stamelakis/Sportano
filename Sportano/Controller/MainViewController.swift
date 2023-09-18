@@ -40,7 +40,6 @@ class MainViewController: UIViewController {
     }
 
     func updateDataSource() {
-        // TODO: Define what the identifier might be here
         self.dataSource = SportsTableViewDataSource(
             cellIdentifier: TableCollectionViewCell.identifier,
             headerCellIdentifier: SportHeaderViewCell.identifier,
