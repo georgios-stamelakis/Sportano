@@ -69,13 +69,12 @@ class TableCollectionViewCell: UITableViewCell {
         }
         self.dataSource = EventsCollectionViewDataSource(cellIdentifier: HorizontalItemCollectionViewCell.identifier, items: events, configureCell: { (cell, eventData) in
             cell.eventData = eventData
-            cell.delegate = self.dataSource
+            cell.delegate = self
         })
 
         DispatchQueue.main.async {
             self.collectionView.dataSource = self.dataSource
             self.collectionView.reloadData()
-            print("RELOAD DATA collection was Called")
         }
     }
 
@@ -93,9 +92,19 @@ extension TableCollectionViewCell: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected item: \(indexPath.item) at row: \(indexPath.row) section: \(indexPath.section)")
 
         collectionView.deselectItem(at: indexPath, animated: true)
+    }
+
+}
+
+extension TableCollectionViewCell: HorizontalItemCollectionViewCellDelegate {
+
+    func buttonTapped(in cell: HorizontalItemCollectionViewCell, setFavoriteStateTo: Bool) {
+
+        dataSource.notifyOnButtonPress(cell: cell, setFavoriteStateTo: setFavoriteStateTo, collectionView: self.collectionView)
+
+        self.collectionView.reloadData()
     }
 
 }

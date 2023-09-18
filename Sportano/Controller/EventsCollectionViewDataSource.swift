@@ -50,19 +50,19 @@ class EventsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
         return cell
     }
-}
 
-extension EventsCollectionViewDataSource: HorizontalItemCollectionViewCellDelegate {
-
-    func buttonTapped(in cell: HorizontalItemCollectionViewCell, setFavoriteStateTo: Bool) {
-
+    func notifyOnButtonPress(cell: HorizontalItemCollectionViewCell, setFavoriteStateTo: Bool, collectionView: UICollectionView) {
         cell.eventData?.isFavorite = setFavoriteStateTo
 
         items = DataFormatter().sortEventsByFavorites(events: items)
 
-//        if let item = cell.eventData {
-//            self.configureCell(cell, item)
-//        }
-    }
+        if let item = cell.eventData {
+            self.configureCell(cell, item)
+        }
 
+        // TODO: Need to implement this for animating CollectionViewCell move
+//        collectionView.moveItem(at: <#T##IndexPath#>, to: <#T##IndexPath#>)
+    }
+    
 }
+
