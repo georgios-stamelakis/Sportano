@@ -12,6 +12,7 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
     private var cellIdentifier: String
     private var items: DataModel
     var configureCell: (TableCollectionViewCell, SportModel) -> () //= { _, _ in }
+    var configureHeaderCell: (HeaderCell, SportModel) -> () //= { _, _ in }
 
     init(cellIdentifier: String, items: DataModel, configureCell: @escaping (TableCollectionViewCell, SportModel) -> ()) {
         self.cellIdentifier = cellIdentifier
@@ -20,21 +21,42 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return 2
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableCollectionViewCell
+
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! HeaderCell
+
+            print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(String(describing: cell.sportData?.sportName))")
+            print("GIORGOS TABLE GET 2")
+
+            let item = items[indexPath.section]
+            self.configureHeaderCell(cell, item)
+
+            return cell
+
+        case 1:
+
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableCollectionViewCell
 
 
-        print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(String(describing: cell.sportData?.sportName))")
+            print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(String(describing: cell.sportData?.sportName))")
 
-        print("GIORGOS TABLE GET 2")
+            print("GIORGOS TABLE GET 2")
 
-        let item = items[indexPath.row]
-        self.configureCell(cell, item)
+            let item = items[indexPath.section]
+            self.configureCell(cell, item)
 
-        return cell
+            return cell
+
+        }
     }
 }
 

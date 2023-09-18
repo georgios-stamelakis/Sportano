@@ -11,7 +11,6 @@ class TableCollectionViewCell: UITableViewCell {
 
     static let identifier = "TableCollectionViewCell"
 
-    var containerStackView: UIStackView!
     var headerView: UIView!
     let headerLabel = UILabel()
 
@@ -23,7 +22,7 @@ class TableCollectionViewCell: UITableViewCell {
         didSet {
             headerLabel.text = sportData?.sportName
 
-            updateCell()
+//            updateCell()
 
             // TODO: Move update from here so that its called only once per collectionView
             updateDataSource()
@@ -32,7 +31,6 @@ class TableCollectionViewCell: UITableViewCell {
 
     // TODO: Move this to ViewController if possible
     private var dataSource : EventsCollectionViewDataSource!
-
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
@@ -105,7 +103,7 @@ class TableCollectionViewCell: UITableViewCell {
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: collectionView.isHidden ? 0 : 180) // Set height for the CollectionView
+            collectionView.heightAnchor.constraint(equalToConstant: 180) // Set height for the CollectionView
         ])
 
 //        UICollectionView.
