@@ -1,5 +1,5 @@
 //
-//  HorizontalCollectionViewCell.swift
+//  TableCollectionViewCell.swift
 //  Sportano
 //
 //  Created by Georgios Stamelakis on 16/9/23.
@@ -72,6 +72,7 @@ class TableCollectionViewCell: UITableViewCell {
         }
         self.dataSource = EventsCollectionViewDataSource(cellIdentifier: HorizontalItemCollectionViewCell.identifier, items: events, configureCell: { (cell, eventData) in
             cell.eventData = eventData
+            cell.delegate = self.dataSource
         })
 
         DispatchQueue.main.async {
@@ -81,35 +82,35 @@ class TableCollectionViewCell: UITableViewCell {
         }
     }
 
-    func updateCell() {
-
-        let willCellCollapse = sportData?.isCollapsed ?? true
-
-        collectionView.isHidden = willCellCollapse
-
-        NSLayoutConstraint.activate([
-//            // Configure constraints for the header view
-//            headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            headerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            headerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//            headerView.heightAnchor.constraint(equalToConstant: 40), // Set the desired height for HeaderView
+//    func updateCell() {
 //
-//            // Configure constraints for the header label
-//            headerLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
-//            headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-//            headerLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-//            headerLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+//        let willCellCollapse = sportData?.isCollapsed ?? true
 //
-//            // Configure constraints for the collection view
-//            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-//            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: willCellCollapse ? 20 : 180)
-            // Set height for the CollectionView
-        ])
-
-    }
+//        collectionView.isHidden = willCellCollapse
+//
+//        NSLayoutConstraint.activate([
+////            // Configure constraints for the header view
+////            headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
+////            headerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+////            headerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+////            headerView.heightAnchor.constraint(equalToConstant: 40), // Set the desired height for HeaderView
+////
+////            // Configure constraints for the header label
+////            headerLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
+////            headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+////            headerLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+////            headerLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+////
+////            // Configure constraints for the collection view
+////            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+////            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+////            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+////            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            collectionView.heightAnchor.constraint(equalToConstant: willCellCollapse ? 20 : 180)
+//            // Set height for the CollectionView
+//        ])
+//
+//    }
 
     deinit {
         print("DESTRUCTION: TableViewCell")
@@ -131,14 +132,13 @@ extension TableCollectionViewCell: UICollectionViewDelegateFlowLayout {
     }
 
     //// UICollectionViewDelegateFlowLayout methods
-    //
-    //func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    //    return 1
-    //}
-    //
-    //func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    //    return 1
-    //}
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 1
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 1
+//    }
 
 }
-

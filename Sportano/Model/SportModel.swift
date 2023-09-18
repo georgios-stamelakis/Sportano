@@ -10,9 +10,7 @@ import Foundation
 struct SportModel: Decodable {
     let sportId: String
     let sportName: String
-    let events: [EventModel]
-
-    var isCollapsed = true
+    var events: [EventModel]
 
     enum CodingKeys: String, CodingKey {
         case sportId = "i"

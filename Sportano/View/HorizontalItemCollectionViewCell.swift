@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol HorizontalItemCollectionViewCellDelegate: AnyObject {
+    func buttonTapped(in cell: HorizontalItemCollectionViewCell)
+}
+
 class HorizontalItemCollectionViewCell: UICollectionViewCell {
-    
+
+    weak var delegate: HorizontalItemCollectionViewCellDelegate?
+
     static let identifier = "HorizontalItemCollectionViewCell"
 
     var eventData: EventModel? {
@@ -34,7 +40,7 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
             //            timeLabel.text = String(time)
             //        }
 
-//            favButton.isEnabled = eventData?.isFavorite ?? false
+            favButton.isSelected = eventData?.isFavorite ?? false
         }
     }
 
@@ -69,8 +75,9 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
         let selectedImage = UIImage(named: "star.fill.yellow")
         favButton.setImage(selectedImage, for: .selected)
         favButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-//        favButton.isEnabled = eventData?.isFavorite ?? false
         favButton.isEnabled = true
+        favButton.isSelected = eventData?.isFavorite ?? false
+
 
         // Create and configure titleLabel
         titleLabel = UILabel()
@@ -124,10 +131,13 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
     }
 
     @objc func buttonTapped() {
-        print("Button is \(favButton.isEnabled)")
-        favButton.isSelected.toggle()
 
-//        eventData?.isFavorite.toggle()
+        favButton.isSelected.toggle()
+        delegate?.buttonTapped(in: self)
+
+        // FIXME: GIORGOS - this here needs to notify dataSource data to change... not change it here
+        
+
     }
 
     deinit {

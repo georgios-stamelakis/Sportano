@@ -30,9 +30,24 @@ class EventsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
         print("GIORGOS COLLECTION GET 2")
 
+        items[indexPath.item].indexPath = indexPath
         let item = items[indexPath.item]
         self.configureCell(cell, item)
 
         return cell
     }
+}
+
+extension EventsCollectionViewDataSource: HorizontalItemCollectionViewCellDelegate {
+
+    func buttonTapped(in cell: HorizontalItemCollectionViewCell) {
+
+        guard let indexPath = cell.eventData?.indexPath else { return }
+        items[indexPath.item].isFavorite.toggle()
+
+        let itemToMove = items.remove(at: indexPath.item)
+        items.insert(itemToMove, at: 0)
+    }
+
+
 }

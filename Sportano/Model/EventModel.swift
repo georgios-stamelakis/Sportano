@@ -14,6 +14,7 @@ struct EventModel: Decodable {
     let eventTime: Int // unix time
     //TODO: check if there is another struct for event_start_time
 
+    var indexPath = IndexPath()
     var isFavorite = false
 
     enum CodingKeys: String, CodingKey {
