@@ -21,11 +21,23 @@ class DataFormatter {
     }
 
     func sortEventsByFavorites(events: [EventModel]) -> [EventModel] {
-        return events.sorted(by: {a, b in
-            if a.isFavorite && !b.isFavorite { return true }
-            return a.originalPosition < b.originalPosition
-        })
+//        return events.sorted(by: {a, b in
+//            if a.isFavorite && !b.isFavorite { return true }
+//            return a.originalPosition < b.originalPosition
+//        })
 
+        let sortedArray = events.sorted { (element1, element2) in
+            // Sort by boolean values first (true comes before false)
+            if element1.isFavorite && !element2.isFavorite {
+                return true
+            } else if !element1.isFavorite && element2.isFavorite {
+                return false
+            }
+
+            // If boolean values are the same, sort by integer values
+            return element1.originalPosition < element2.originalPosition
+        }
+        return sortedArray
     }
 
 }

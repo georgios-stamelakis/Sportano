@@ -38,6 +38,8 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! TableCollectionViewCell
 
             let item = items[indexPath.section]
+            item.events =  DataFormatter().sortEventsByFavorites(events: item.events)
+            
             self.configureCell(cell, item)
 
             return cell
