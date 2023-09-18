@@ -33,6 +33,8 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
             //        if let time = eventData?.eventTime {
             //            timeLabel.text = String(time)
             //        }
+
+//            favButton.isEnabled = eventData?.isFavorite ?? false
         }
     }
 
@@ -67,6 +69,7 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
         let selectedImage = UIImage(named: "star.fill.yellow")
         favButton.setImage(selectedImage, for: .selected)
         favButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+//        favButton.isEnabled = eventData?.isFavorite ?? false
         favButton.isEnabled = true
 
         // Create and configure titleLabel
@@ -123,6 +126,8 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
     @objc func buttonTapped() {
         print("Button is \(favButton.isEnabled)")
         favButton.isSelected.toggle()
+
+//        eventData?.isFavorite.toggle()
     }
 
     deinit {

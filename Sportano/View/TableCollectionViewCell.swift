@@ -77,6 +77,7 @@ class TableCollectionViewCell: UITableViewCell {
         DispatchQueue.main.async {
             self.collectionView.dataSource = self.dataSource
             self.collectionView.reloadData()
+            print("RELOAD DATA collection was Called")
         }
     }
 

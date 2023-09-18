@@ -52,6 +52,7 @@ class MainViewController: UIViewController {
             self.tableView.dataSource = self.dataSource
             self.tableView.delegate = self.dataSource
             self.tableView.reloadData()
+            print("RELOAD DATA table was Called")
         }
     }
 
@@ -72,7 +73,19 @@ class MainViewController: UIViewController {
         self.tableView.register(TableCollectionViewCell.self, forCellReuseIdentifier: TableCollectionViewCell.identifier)
         self.tableView.register(SportHeaderViewCell.self, forCellReuseIdentifier: SportHeaderViewCell.identifier)
 
+//        self.tableView.tableFooterView = UIView()
+//        self.tableView.tableHeaderView = UIView()
+
         view.addSubview(self.tableView)
+    }
+
+
+    @objc private func orientationDidChange() {
+        switch UIDevice.current.orientation {
+        case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
+            tableView.reloadSections(IndexSet(Array(tableView.expandedSections.keys)), with: .none)
+        default:break
+        }
     }
 
 }

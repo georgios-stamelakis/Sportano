@@ -76,23 +76,6 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
 //
 //}
 
-extension SportsTableViewDataSource: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("User selected table at row:\(indexPath.row + 1) section:\(indexPath.section + 1) item: \(indexPath.item + 1)")
-
-        tableView.deselectRow(at: indexPath, animated: true)
-
-        // FIXME: Remove this if not needed
-
-        self.items[indexPath.row].isCollapsed.toggle()
-//        tableView.reloadRows(at: [indexPath], with: .fade)
-        
-        tableView.reloadData()
-    }
-
-}
-
 extension SportsTableViewDataSource: ExpyTableViewDataSource {
     func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifier) as! SportHeaderViewCell
@@ -107,6 +90,64 @@ extension SportsTableViewDataSource: ExpyTableViewDataSource {
     }
 
     func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool {
-        return ExpyTableViewDefaultValues.expandableStatus
+        return true
     }
+}
+
+
+extension SportsTableViewDataSource: ExpyTableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        print("User selected table at row:\(indexPath.row + 1) section:\(indexPath.section + 1) item: \(indexPath.item + 1)")
+
+        // FIXME: Remove this if not needed
+
+//        self.items[indexPath.row].isCollapsed.toggle()
+
+//        tableView.reloadRows(at: [indexPath], with: .fade)
+//        tableView.reloadData()
+    }
+
+    func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int) {
+
+        switch state {
+        case .willExpand:
+            print("WILL EXPAND")
+
+        case .willCollapse:
+            print("WILL COLLAPSE")
+
+        case .didExpand:
+            print("DID EXPAND")
+
+        case .didCollapse:
+            print("DID COLLAPSE")
+        }
+    }
+
+    // FIXME: This does not change the spacing for sections...
+    // Acts as spacing to the top of the section
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        // Return the desired height for the section header
+        return 2.0
+    }
+
+    // Acts as spacing to the bottom of the section
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        // Return the desired height for the section footer
+        return 2.0
+    }
+
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return " "
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
 }
