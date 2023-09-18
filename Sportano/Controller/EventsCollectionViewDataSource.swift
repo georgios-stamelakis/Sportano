@@ -60,9 +60,9 @@ extension EventsCollectionViewDataSource: HorizontalItemCollectionViewCellDelega
 
         items = DataFormatter().sortEventsByFavorites(events: items)
 
-        if let item = cell.eventData {
-            self.configureCell(cell, item)
-        }
+//        if let item = cell.eventData {
+//            self.configureCell(cell, item)
+//        }
     }
 
 }
