@@ -67,11 +67,20 @@ class MainViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: labelColor]
         navigationController?.navigationBar.prefersLargeTitles = true
 
+        let settingsImage = UIImage(named: "settings")
+        let settingsButton = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(settingsButtonTapped))
+        navigationItem.rightBarButtonItem = settingsButton
+
+        let personImage = UIImage(named: "person.fill")
+        let personButton = UIBarButtonItem(image: personImage, style: .plain, target: self, action: #selector(personButtonTapped))
+        navigationItem.leftBarButtonItem = personButton
+
+        navigationController?.setNavigationBarHidden(false, animated: false)
+
+        navigationController?.navigationBar.tintColor = labelColor
+
+
         self.tableView.frame = view.bounds
-//        self.tableView.dataSource = self
-//        self.tableView.delegate = dataSource
-//        self.tableView.estimatedRowHeight = 180
-//        self.tableView.rowHeight = UITableView.automaticDimension
 
         // Register the custom table view cell
         self.tableView.register(TableCollectionViewCell.self, forCellReuseIdentifier: TableCollectionViewCell.identifier)
@@ -79,11 +88,6 @@ class MainViewController: UIViewController {
 
 //        self.tableView.tableFooterView = UIView()
 //        self.tableView.tableHeaderView = UIView()
-
-        let settingsImage = UIImage(named: "settings_icon")
-        let settingsButton = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(settingsButtonTapped))
-        navigationItem.rightBarButtonItem = settingsButton
-        navigationController?.setNavigationBarHidden(false, animated: false)
 
 
         view.addSubview(self.tableView)
@@ -99,8 +103,16 @@ class MainViewController: UIViewController {
     }
 
     @objc func settingsButtonTapped() {
-        
+
 
     }
+
+
+    @objc func personButtonTapped() {
+            // Handle the button tap action here
+            // You can present the details screen or perform any other action
+            let detailsViewController = MainViewController()
+            navigationController?.pushViewController(detailsViewController, animated: true)
+        }
 
 }
