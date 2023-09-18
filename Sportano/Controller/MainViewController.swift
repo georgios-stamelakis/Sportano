@@ -36,10 +36,17 @@ class MainViewController: UIViewController {
 
     func updateDataSource(){
         // TODO: Define what the identifier might be here
-        self.dataSource = SportsTableViewDataSource(cellIdentifier: TableCollectionViewCell.identifier, items: sportsViewModel.sportsData, configureCell: { (cell, sportData) in
-            cell.sportData = sportData
+        self.dataSource = SportsTableViewDataSource(
+            cellIdentifier: TableCollectionViewCell.identifier,
+            headerCellIdentifier: SportHeaderViewCell.identifier,
+            items: sportsViewModel.sportsData,
 
-        })
+            configureCell: { (cell, sportData) in
+                cell.sportData = sportData
+            },
+            configureHeaderCell: { (cell, sportData) in
+                cell.headerLabel.text = sportData.sportName
+            })
 
         DispatchQueue.main.async {
             self.tableView.dataSource = self.dataSource
@@ -58,11 +65,12 @@ class MainViewController: UIViewController {
         self.tableView.frame = view.bounds
 //        self.tableView.dataSource = self
 //        self.tableView.delegate = dataSource
-        self.tableView.estimatedRowHeight = 180
-        self.tableView.rowHeight = UITableView.automaticDimension
+//        self.tableView.estimatedRowHeight = 180
+//        self.tableView.rowHeight = UITableView.automaticDimension
 
         // Register the custom table view cell
         self.tableView.register(TableCollectionViewCell.self, forCellReuseIdentifier: TableCollectionViewCell.identifier)
+        self.tableView.register(SportHeaderViewCell.self, forCellReuseIdentifier: SportHeaderViewCell.identifier)
 
         view.addSubview(self.tableView)
     }

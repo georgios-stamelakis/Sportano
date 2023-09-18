@@ -11,19 +11,10 @@ class TableCollectionViewCell: UITableViewCell {
 
     static let identifier = "TableCollectionViewCell"
 
-    var headerView: UIView!
-    let headerLabel = UILabel()
-
     var collectionView: UICollectionView!
-
-//    var isCellCollapsed: Bool?
 
     var sportData: SportModel? {
         didSet {
-            headerLabel.text = sportData?.sportName
-
-//            updateCell()
-
             // TODO: Move update from here so that its called only once per collectionView
             updateDataSource()
         }
@@ -32,21 +23,10 @@ class TableCollectionViewCell: UITableViewCell {
     // TODO: Move this to ViewController if possible
     private var dataSource : EventsCollectionViewDataSource!
 
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
+
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-
-        // Initialize the header view
-        headerView = UIView()
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        headerView.backgroundColor = bgSection // Customize the header appearance
-
-        // Customize the header view for each cell
-
-        headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        headerLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        headerLabel.textColor = .white
 
         // Initialize the collection view layout
         let layout = UICollectionViewFlowLayout()
@@ -66,48 +46,17 @@ class TableCollectionViewCell: UITableViewCell {
         collectionView.delegate = self
 //        collectionView.dataSource = dataSource
 
-        // Add the header view and collection view to the cell's content view
-//        contentView.addSubview(headerView)
-        headerView.addSubview(headerLabel)
-//        contentView.addSubview(collectionView)
+        // Add the collection view to the cell's content view
+        contentView.addSubview(collectionView)
 
-
-        // --- Stack View
-
-        containerStackView = UIStackView()
-        containerStackView.axis = .vertical // Set the axis (vertical or horizontal) as per your design.
-        containerStackView.spacing = 8 // Adjust the spacing between views as needed.
-        containerStackView.translatesAutoresizingMaskIntoConstraints = false // If using Auto Layout.
-        contentView.addSubview(containerStackView) // Add the stack view to your view hierarchy.
-
-        // Customize the views as needed (set background color, labels, buttons, etc.).
-        containerStackView.addArrangedSubview(headerView)
-        containerStackView.addArrangedSubview(collectionView)
-        // Stack View ---
-
+        // Configure constraints for the collection view
         NSLayoutConstraint.activate([
-            // Configure constraints for the header view
-            headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 40), // Set the desired height for HeaderView
-
-            // Configure constraints for the header label
-            headerLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
-            headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-            headerLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-            headerLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-
-            // Configure constraints for the collection view
-            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 180) // Set height for the CollectionView
         ])
-
-//        UICollectionView.
-//        preferredLayoutAttributesFitting
 
     }
 

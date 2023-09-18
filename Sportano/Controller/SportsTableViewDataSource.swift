@@ -10,14 +10,17 @@ import UIKit
 class SportsTableViewDataSource: NSObject, UITableViewDataSource {
 
     private var cellIdentifier: String
+    private var headerCellIdentifier: String
     private var items: DataModel
-    var configureCell: (TableCollectionViewCell, SportModel) -> () //= { _, _ in }
-    var configureHeaderCell: (HeaderCell, SportModel) -> () //= { _, _ in }
+    var configureCell: (TableCollectionViewCell, SportModel) -> () = { _, _ in }
+    var configureHeaderCell: (SportHeaderViewCell, SportModel) -> () = { _, _ in }
 
-    init(cellIdentifier: String, items: DataModel, configureCell: @escaping (TableCollectionViewCell, SportModel) -> ()) {
+    init(cellIdentifier: String, headerCellIdentifier: String, items: DataModel, configureCell: @escaping (TableCollectionViewCell, SportModel) -> (), configureHeaderCell: @escaping (SportHeaderViewCell, SportModel) -> ()) {
         self.cellIdentifier = cellIdentifier
+        self.headerCellIdentifier = headerCellIdentifier
         self.items = items
         self.configureCell = configureCell
+        self.configureHeaderCell = configureHeaderCell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,9 +33,9 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        switch indexPath.section {
+        switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! HeaderCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifier, for: indexPath) as! SportHeaderViewCell
 
             print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(String(describing: cell.sportData?.sportName))")
             print("GIORGOS TABLE GET 2")
@@ -43,7 +46,6 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
             return cell
 
         case 1:
-
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableCollectionViewCell
 
 
@@ -55,6 +57,10 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
             self.configureCell(cell, item)
 
             return cell
+
+        default:
+            print("ERROR out of bounds - CELL not created")
+            return UITableViewCell()
 
         }
     }
