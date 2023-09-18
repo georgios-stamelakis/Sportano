@@ -12,9 +12,7 @@ class EventModel: Decodable {
     let sportId: String
     let eventName: String
     let eventTime: Int // unix time
-    //TODO: check if there is another struct for event_start_time
 
-    var indexPath = IndexPath()
     var isFavorite = false
 
     var originalPosition: Int = -1

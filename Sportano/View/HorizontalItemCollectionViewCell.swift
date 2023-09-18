@@ -19,24 +19,20 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
 
     var eventData: EventModel? {
         didSet {
-            print("GIORGOS COLLECTION SET")
+            favButton.isSelected = eventData?.isFavorite ?? false
 
             guard var names = eventData?.eventName.components(separatedBy: " - ") else { return }
-            //        titleLabel.text =
             while names.count < 2 {
                 names.append("")
             }
-
-            // FIXME: 1 line for each name for titleLabel.text
-            titleLabel.numberOfLines = 2
-            titleLabel.lineBreakMode = .byTruncatingTail
-            titleLabel.text = names.joined(separator: "\n")
-
-            favButton.isSelected = eventData?.isFavorite ?? false
+            titleLabelFirstName.text = names[0]
+            titleLabelSecondName.text = names[1]
         }
     }
 
-    var titleLabel: UILabel!
+    var titleLabelFirstName: UILabel!
+    var titleLabelSecondName: UILabel!
+
     var timeLabel: UILabel!
 
     var favButton = UIButton(type: .custom)
@@ -72,17 +68,25 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
 
 
         // Create and configure titleLabel
-        titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textAlignment = .center
-        titleLabel.textColor = .white
-        titleLabel.backgroundColor = .clear
-        titleLabel.font = UIFont.systemFont(ofSize: 16)
+        titleLabelFirstName = UILabel()
+        titleLabelFirstName.translatesAutoresizingMaskIntoConstraints = false
+        titleLabelFirstName.textAlignment = .center
+        titleLabelFirstName.textColor = .white
+        titleLabelFirstName.backgroundColor = .clear
+        titleLabelFirstName.font = UIFont.systemFont(ofSize: 16)
+
+        titleLabelSecondName = UILabel()
+        titleLabelSecondName.translatesAutoresizingMaskIntoConstraints = false
+        titleLabelSecondName.textAlignment = .center
+        titleLabelSecondName.textColor = .white
+        titleLabelSecondName.backgroundColor = .clear
+        titleLabelSecondName.font = UIFont.systemFont(ofSize: 16)
 
         // Add the elements to the background view
         backgroundView.addSubview(timeLabel)
         backgroundView.addSubview(favButton)
-        backgroundView.addSubview(titleLabel)
+        backgroundView.addSubview(titleLabelFirstName)
+        backgroundView.addSubview(titleLabelSecondName)
 
         // Add the background view to the cell's content view
         contentView.addSubview(backgroundView)
@@ -106,15 +110,22 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
             favButton.topAnchor.constraint(equalTo: timeLabel.bottomAnchor),
             favButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
             favButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
-            favButton.bottomAnchor.constraint(equalTo: titleLabel.topAnchor),
+            favButton.bottomAnchor.constraint(equalTo: titleLabelFirstName.topAnchor, constant: -10),
             favButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            favButton.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor),
+            favButton.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor, constant: -20),
+            favButton.heightAnchor.constraint(equalToConstant: 50),
+            favButton.widthAnchor.constraint(equalToConstant: 50),
 
-            // Configure constraints for the title label
-            titleLabel.topAnchor.constraint(equalTo: favButton.bottomAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor)
+            // Configure constraints for the title labels
+            titleLabelFirstName.topAnchor.constraint(equalTo: favButton.bottomAnchor, constant: 10),
+            titleLabelFirstName.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            titleLabelFirstName.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            titleLabelFirstName.bottomAnchor.constraint(equalTo: titleLabelSecondName.topAnchor),
+
+            titleLabelSecondName.topAnchor.constraint(equalTo: titleLabelFirstName.bottomAnchor),
+            titleLabelSecondName.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            titleLabelSecondName.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            titleLabelSecondName.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor)
         ])
     }
 
@@ -123,23 +134,11 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
     }
 
     @objc func buttonTapped() {
-
-        print("BUTTON Tapped")
-
-//        favButton.isSelected.toggle()
-
-//        self.eventData?.isFavorite.toggle()
-
         delegate?.buttonTapped(in: self, setFavoriteStateTo: !favButton.isSelected)
-
-        // FIXME: GIORGOS - this here needs to notify dataSource data to change... not change it here
-        
-
     }
 
     deinit {
         print("DESTRUCTION: Collection View Cell")
     }
-
 
 }

@@ -11,31 +11,22 @@ class TableCollectionViewCell: UITableViewCell {
 
     static let identifier = "TableCollectionViewCell"
 
-
-
     var collectionView: UICollectionView!
 
     var sportData: SportModel? {
         didSet {
-            // TODO: Move update from here so that its called only once per collectionView
             updateDataSource()
         }
     }
-
-    // TODO: Move this to ViewController if possible
     private var dataSource : EventsCollectionViewDataSource!
 
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 
-
-
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         // Initialize the collection view layout
         let layout = UICollectionViewFlowLayout()
-//        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//        layout.itemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .horizontal
 
         // Initialize the collection view
@@ -48,7 +39,6 @@ class TableCollectionViewCell: UITableViewCell {
 
         // Set the delegate and dataSource
         collectionView.delegate = self
-//        collectionView.dataSource = dataSource
 
         // Add the collection view to the cell's content view
         contentView.addSubview(collectionView)
@@ -73,7 +63,6 @@ class TableCollectionViewCell: UITableViewCell {
     }
 
     func updateDataSource() {
-        // TODO: Define what the identifier might be here
         guard let events = sportData?.events else {
             print("ERROR events is NIL")
             return
@@ -90,36 +79,6 @@ class TableCollectionViewCell: UITableViewCell {
         }
     }
 
-//    func updateCell() {
-//
-//        let willCellCollapse = sportData?.isCollapsed ?? true
-//
-//        collectionView.isHidden = willCellCollapse
-//
-//        NSLayoutConstraint.activate([
-////            // Configure constraints for the header view
-////            headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-////            headerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-////            headerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-////            headerView.heightAnchor.constraint(equalToConstant: 40), // Set the desired height for HeaderView
-////
-////            // Configure constraints for the header label
-////            headerLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
-////            headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-////            headerLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-////            headerLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-////
-////            // Configure constraints for the collection view
-////            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-////            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-////            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-////            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            collectionView.heightAnchor.constraint(equalToConstant: willCellCollapse ? 20 : 180)
-//            // Set height for the CollectionView
-//        ])
-//
-//    }
-
     deinit {
         print("DESTRUCTION: TableViewCell")
     }
@@ -130,7 +89,7 @@ extension TableCollectionViewCell: UICollectionViewDelegateFlowLayout {
 
     // UICollectionViewDelegateFlowLayout method to set item size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 160, height: 160) // Set the desired size for collection view items
+        return CGSize(width: 200, height: 160)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -139,6 +98,7 @@ extension TableCollectionViewCell: UICollectionViewDelegateFlowLayout {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 
+    // TODO: Remove comment
     //// UICollectionViewDelegateFlowLayout methods
 //
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

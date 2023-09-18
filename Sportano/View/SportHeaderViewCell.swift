@@ -86,24 +86,17 @@ extension SportHeaderViewCell: ExpyTableViewHeaderCell {
 
         switch state {
         case .willExpand:
-            print("WILL EXPAND")
-            hideSeparator()
             arrowDown(animated: true)
 
         case .willCollapse:
-            print("WILL COLLAPSE")
             arrowRight(animated: true)
 
-        case .didExpand:
-            print("DID EXPAND")
+        default:
+            break
 
-        case .didCollapse:
-            showSeparator()
-            print("DID COLLAPSE")
         }
     }
 
-    // FIXME: Find out why the animation on the arrow is not working...
     private func arrowDown(animated: Bool) {
         UIView.animate(withDuration: (animated ? 0.3 : 0)) {
             self.imageViewArrow.transform = CGAffineTransform(rotationAngle: (CGFloat.pi / 2))
@@ -114,15 +107,6 @@ extension SportHeaderViewCell: ExpyTableViewHeaderCell {
         UIView.animate(withDuration: (animated ? 0.3 : 0)) {
             self.imageViewArrow.transform = CGAffineTransform(rotationAngle: 0)
         }
-    }
-
-    // TODO: Implement or remove these functions here. Probably useless for my case
-    func showSeparator() {
-
-    }
-
-    func hideSeparator() {
-
     }
 
 }

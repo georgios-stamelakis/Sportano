@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 weak var timer: Timer?
 var componentsFormatter: DateComponentsFormatter = {
@@ -80,15 +81,13 @@ class MainViewController: UIViewController {
         navigationController?.navigationBar.tintColor = labelColor
 
 
-        self.tableView.frame = view.bounds
+        // Adjust table view
+        self.tableView.frame = view.safeAreaLayoutGuide.layoutFrame
+        self.tableView.separatorStyle = .none
 
         // Register the custom table view cell
         self.tableView.register(TableCollectionViewCell.self, forCellReuseIdentifier: TableCollectionViewCell.identifier)
         self.tableView.register(SportHeaderViewCell.self, forCellReuseIdentifier: SportHeaderViewCell.identifier)
-
-//        self.tableView.tableFooterView = UIView()
-//        self.tableView.tableHeaderView = UIView()
-
 
         view.addSubview(self.tableView)
     }
@@ -107,12 +106,25 @@ class MainViewController: UIViewController {
 
     }
 
-
+    // A small Swift UI experience
     @objc func personButtonTapped() {
-            // Handle the button tap action here
-            // You can present the details screen or perform any other action
-            let detailsViewController = MainViewController()
-            navigationController?.pushViewController(detailsViewController, animated: true)
+        if #available(iOS 13.0, *) {
+            let swiftUIWrapperView = SwiftUIWrapperView()
+
+            // Create a UIHostingController to host the SwiftUI view
+            let hostingController = UIHostingController(rootView: swiftUIWrapperView)
+
+            // Present the hosting controller modally
+            present(hostingController, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(
+                title: "Sorry",
+                message: "This is available in iOS 13 and later.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
+    }
 
 }
