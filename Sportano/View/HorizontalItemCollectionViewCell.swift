@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HorizontalItemCollectionViewCellDelegate: AnyObject {
-    func buttonTapped(in cell: HorizontalItemCollectionViewCell)
+    func buttonTapped(in cell: HorizontalItemCollectionViewCell, setFavoriteStateTo: Bool)
 }
 
 class HorizontalItemCollectionViewCell: UICollectionViewCell {
@@ -132,8 +132,13 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
 
     @objc func buttonTapped() {
 
-        favButton.isSelected.toggle()
-        delegate?.buttonTapped(in: self)
+        print("BUTTON Tapped")
+
+//        favButton.isSelected.toggle()
+
+//        self.eventData?.isFavorite.toggle()
+
+        delegate?.buttonTapped(in: self, setFavoriteStateTo: !favButton.isSelected)
 
         // FIXME: GIORGOS - this here needs to notify dataSource data to change... not change it here
         
