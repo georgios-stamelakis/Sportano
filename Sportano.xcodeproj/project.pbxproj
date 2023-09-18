@@ -22,6 +22,7 @@
 		0DD5A3D92AB7439200917C85 /* SportsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD5A3D82AB7439200917C85 /* SportsAPIService.swift */; };
 		0DD5A3DB2AB7498D00917C85 /* SportsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD5A3DA2AB7498D00917C85 /* SportsTableViewDataSource.swift */; };
 		0DD5A3DD2AB768F800917C85 /* EventsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD5A3DC2AB768F800917C85 /* EventsCollectionViewDataSource.swift */; };
+		0DD5A3E92AB847CB00917C85 /* SportHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD5A3E82AB847CB00917C85 /* SportHeaderViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		0DD5A3D82AB7439200917C85 /* SportsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAPIService.swift; sourceTree = "<group>"; };
 		0DD5A3DA2AB7498D00917C85 /* SportsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsTableViewDataSource.swift; sourceTree = "<group>"; };
 		0DD5A3DC2AB768F800917C85 /* EventsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		0DD5A3E82AB847CB00917C85 /* SportHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportHeaderViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				0DD5A3CB2AB59E9A00917C85 /* TableCollectionViewCell.swift */,
 				0DD5A3D52AB5BD3200917C85 /* ExpTableCollectionViewCell.swift */,
 				0DD5A3CD2AB5A0A000917C85 /* HorizontalItemCollectionViewCell.swift */,
+				0DD5A3E82AB847CB00917C85 /* SportHeaderViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				0DD5A3CE2AB5A0A000917C85 /* HorizontalItemCollectionViewCell.swift in Sources */,
 				0DD5A3BE2AB47DEE00917C85 /* SportViewModel.swift in Sources */,
 				0DD5A3B92AB4766000917C85 /* EventModel.swift in Sources */,
+				0DD5A3E92AB847CB00917C85 /* SportHeaderViewCell.swift in Sources */,
 				0DD5A3DD2AB768F800917C85 /* EventsCollectionViewDataSource.swift in Sources */,
 				0DD5A3CC2AB59E9A00917C85 /* TableCollectionViewCell.swift in Sources */,
 				0DD5A3D02AB5A0EC00917C85 /* MainViewController.swift in Sources */,

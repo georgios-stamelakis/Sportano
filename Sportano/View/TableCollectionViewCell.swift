@@ -11,14 +11,10 @@ class TableCollectionViewCell: UITableViewCell {
 
     static let identifier = "TableCollectionViewCell"
 
-    var headerView: UIView!
-    let headerLabel = UILabel()
-
     var collectionView: UICollectionView!
 
     var sportData: SportModel? {
         didSet {
-            headerLabel.text = sportData?.sportName
             // TODO: Move update from here so that its called only once per collectionView
             updateDataSource()
         }
@@ -27,22 +23,9 @@ class TableCollectionViewCell: UITableViewCell {
     // TODO: Move this to ViewController if possible
     private var dataSource : EventsCollectionViewDataSource!
 
-//    var isExpanded = false
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
+
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        // Initialize the header view
-        headerView = UIView()
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        headerView.backgroundColor = bgSection // Customize the header appearance
-
-        // Customize the header view for each cell
-
-        headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        headerLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        headerLabel.textColor = .white
 
         // Initialize the collection view layout
         let layout = UICollectionViewFlowLayout()
@@ -60,26 +43,12 @@ class TableCollectionViewCell: UITableViewCell {
         collectionView.delegate = self
 //        collectionView.dataSource = dataSource
 
-        // Add the header view and collection view to the cell's content view
-        contentView.addSubview(headerView)
-        headerView.addSubview(headerLabel)
+        // Add the collection view to the cell's content view
         contentView.addSubview(collectionView)
 
+        // Configure constraints for the collection view
         NSLayoutConstraint.activate([
-            // Configure constraints for the header view
-            headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 40), // Set the desired height for HeaderView
-
-            // Configure constraints for the header label
-            headerLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
-            headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-            headerLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-            headerLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-
-            // Configure constraints for the collection view
-            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
