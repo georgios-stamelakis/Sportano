@@ -7,16 +7,20 @@
 
 import UIKit
 
+weak var timer: Timer?
+var componentsFormatter: DateComponentsFormatter = {
+    let formatter = DateComponentsFormatter()
+    formatter.allowedUnits = [.hour, .minute, .second]
+    return formatter
+}()
+
 class MainViewController: UIViewController {
 
     let tableView = ExpyTableView()
 
-    //    private var viewModel = SportsViewModel()
     private var sportsViewModel: SportsViewModel!
     private var dataSource : SportsTableViewDataSource!
 
-
-    //    var sportsData: DataModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +80,12 @@ class MainViewController: UIViewController {
 //        self.tableView.tableFooterView = UIView()
 //        self.tableView.tableHeaderView = UIView()
 
+        let settingsImage = UIImage(named: "settings_icon")
+        let settingsButton = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(settingsButtonTapped))
+        navigationItem.rightBarButtonItem = settingsButton
+        navigationController?.setNavigationBarHidden(false, animated: false)
+
+
         view.addSubview(self.tableView)
     }
 
@@ -86,6 +96,11 @@ class MainViewController: UIViewController {
             tableView.reloadSections(IndexSet(Array(tableView.expandedSections.keys)), with: .none)
         default:break
         }
+    }
+
+    @objc func settingsButtonTapped() {
+        
+
     }
 
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0D6550FB2AB859180021024B /* ExpyAbstractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6550F92AB859180021024B /* ExpyAbstractions.swift */; };
 		0D6550FC2AB859180021024B /* ExpyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6550FA2AB859180021024B /* ExpyTableView.swift */; };
+		0D870B5C2AB8CBD00028CC14 /* DataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D870B5B2AB8CBD00028CC14 /* DataFormatter.swift */; };
 		0DD5A3A22AB4712800917C85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD5A3A12AB4712800917C85 /* AppDelegate.swift */; };
 		0DD5A3AB2AB4712900917C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DD5A3AA2AB4712900917C85 /* Assets.xcassets */; };
 		0DD5A3AE2AB4712900917C85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD5A3AC2AB4712900917C85 /* LaunchScreen.storyboard */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		0D6550F92AB859180021024B /* ExpyAbstractions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpyAbstractions.swift; sourceTree = "<group>"; };
 		0D6550FA2AB859180021024B /* ExpyTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpyTableView.swift; sourceTree = "<group>"; };
+		0D870B5B2AB8CBD00028CC14 /* DataFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFormatter.swift; sourceTree = "<group>"; };
 		0DD5A39E2AB4712800917C85 /* Sportano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sportano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD5A3A12AB4712800917C85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DD5A3AA2AB4712900917C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,6 +72,14 @@
 			path = "ExpyTableView Library";
 			sourceTree = "<group>";
 		};
+		0D870B5A2AB8CBA50028CC14 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0D870B5B2AB8CBD00028CC14 /* DataFormatter.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		0DD5A3952AB4712800917C85 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 		0DD5A3A02AB4712800917C85 /* Sportano */ = {
 			isa = PBXGroup;
 			children = (
+				0D870B5A2AB8CBA50028CC14 /* Helpers */,
 				0DD5A3A12AB4712800917C85 /* AppDelegate.swift */,
 				0DD5A3D12AB5AFE100917C85 /* ColorSets.xcassets */,
 				0DD5A3D32AB5B4EC00917C85 /* Colors.swift */,
@@ -234,6 +245,7 @@
 				0DD5A3DD2AB768F800917C85 /* EventsCollectionViewDataSource.swift in Sources */,
 				0DD5A3CC2AB59E9A00917C85 /* TableCollectionViewCell.swift in Sources */,
 				0DD5A3D02AB5A0EC00917C85 /* MainViewController.swift in Sources */,
+				0D870B5C2AB8CBD00028CC14 /* DataFormatter.swift in Sources */,
 				0DD5A3DB2AB7498D00917C85 /* SportsTableViewDataSource.swift in Sources */,
 				0DD5A3A22AB4712800917C85 /* AppDelegate.swift in Sources */,
 				0DD5A3D92AB7439200917C85 /* SportsAPIService.swift in Sources */,

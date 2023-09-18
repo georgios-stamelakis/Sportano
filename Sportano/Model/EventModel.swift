@@ -17,6 +17,8 @@ class EventModel: Decodable {
     var indexPath = IndexPath()
     var isFavorite = false
 
+    var originalPosition: Int = -1
+
     enum CodingKeys: String, CodingKey {
         case eventId = "i"
         case sportId = "si"

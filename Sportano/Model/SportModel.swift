@@ -12,6 +12,8 @@ class SportModel: Decodable {
     let sportName: String
     var events: [EventModel]
 
+    
+
     enum CodingKeys: String, CodingKey {
         case sportId = "i"
         case sportName = "d"

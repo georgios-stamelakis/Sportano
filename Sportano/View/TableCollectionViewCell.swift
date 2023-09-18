@@ -11,6 +11,8 @@ class TableCollectionViewCell: UITableViewCell {
 
     static let identifier = "TableCollectionViewCell"
 
+
+
     var collectionView: UICollectionView!
 
     var sportData: SportModel? {
@@ -25,6 +27,8 @@ class TableCollectionViewCell: UITableViewCell {
 
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+
+
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -58,6 +62,10 @@ class TableCollectionViewCell: UITableViewCell {
             collectionView.heightAnchor.constraint(equalToConstant: 180) // Set height for the CollectionView
         ])
 
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.collectionView.reloadData()
+
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {

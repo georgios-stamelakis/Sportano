@@ -32,14 +32,6 @@ class HorizontalItemCollectionViewCell: UICollectionViewCell {
             titleLabel.lineBreakMode = .byTruncatingTail
             titleLabel.text = names.joined(separator: "\n")
 
-            // FIXME: Change timeLabel.text to time
-            if let sportID = eventData?.sportId {
-                timeLabel.text = sportID
-            }
-            //        if let time = eventData?.eventTime {
-            //            timeLabel.text = String(time)
-            //        }
-
             favButton.isSelected = eventData?.isFavorite ?? false
         }
     }

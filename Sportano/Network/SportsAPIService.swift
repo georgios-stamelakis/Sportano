@@ -16,7 +16,7 @@ class SportsAPIService: NSObject {
             if let data = data {
                 do {
                     let result = try jsonDecoder.decode(DataModel.self, from: data)
-                    completion(result)
+                    completion(DataFormatter().setOriginalPositions(data: result))
                 } catch {
                     // Handle the error here
                     print("Error decoding data")
