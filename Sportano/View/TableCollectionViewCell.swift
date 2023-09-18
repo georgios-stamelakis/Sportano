@@ -18,8 +18,8 @@ class TableCollectionViewCell: UITableViewCell {
             updateDataSource()
         }
     }
+    
     private var dataSource : EventsCollectionViewDataSource!
-
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 
@@ -97,16 +97,5 @@ extension TableCollectionViewCell: UICollectionViewDelegateFlowLayout {
 
         collectionView.deselectItem(at: indexPath, animated: true)
     }
-
-    // TODO: Remove comment
-    //// UICollectionViewDelegateFlowLayout methods
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 1
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 1
-//    }
 
 }
