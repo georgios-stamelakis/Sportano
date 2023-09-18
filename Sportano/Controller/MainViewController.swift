@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    let tableView = UITableView()
+    let tableView = ExpyTableView()
 
     //    private var viewModel = SportsViewModel()
     private var sportsViewModel: SportsViewModel!

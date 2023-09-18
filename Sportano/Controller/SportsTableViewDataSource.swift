@@ -34,19 +34,8 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         switch indexPath.row {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifier, for: indexPath) as! SportHeaderViewCell
-
-            print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(String(describing: cell.sportData?.sportName))")
-            print("GIORGOS TABLE GET 2")
-
-            let item = items[indexPath.section]
-            self.configureHeaderCell(cell, item)
-
-            return cell
-
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableCollectionViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! TableCollectionViewCell
 
 
             print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(String(describing: cell.sportData?.sportName))")
@@ -72,7 +61,7 @@ class SportsTableViewDataSource: NSObject, UITableViewDataSource {
 //{
 //
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: TableCollectionViewCell.identifier, for: indexPath) as! TableCollectionViewCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: TableCollectionViewCell.identifier) as! TableCollectionViewCell
 //
 //        print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(sportsViewModel.sportsData[indexPath.row].sportName)")
 //
@@ -102,4 +91,22 @@ extension SportsTableViewDataSource: UITableViewDelegate {
         tableView.reloadData()
     }
 
+}
+
+extension SportsTableViewDataSource: ExpyTableViewDataSource {
+    func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifier) as! SportHeaderViewCell
+
+//        print("Created table row  - row \(indexPath.row) section \(indexPath.section) item \(indexPath.item) : for sport \(String(describing: cell.sportData?.sportName))")
+        print("GIORGOS TABLE GET 2")
+
+        let item = items[section]
+        self.configureHeaderCell(cell, item)
+
+        return cell
+    }
+
+    func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool {
+        return ExpyTableViewDefaultValues.expandableStatus
+    }
 }

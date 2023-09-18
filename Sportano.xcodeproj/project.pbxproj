@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D6550FB2AB859180021024B /* ExpyAbstractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6550F92AB859180021024B /* ExpyAbstractions.swift */; };
+		0D6550FC2AB859180021024B /* ExpyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6550FA2AB859180021024B /* ExpyTableView.swift */; };
 		0DD5A3A22AB4712800917C85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD5A3A12AB4712800917C85 /* AppDelegate.swift */; };
 		0DD5A3AB2AB4712900917C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DD5A3AA2AB4712900917C85 /* Assets.xcassets */; };
 		0DD5A3AE2AB4712900917C85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD5A3AC2AB4712900917C85 /* LaunchScreen.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D6550F92AB859180021024B /* ExpyAbstractions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpyAbstractions.swift; sourceTree = "<group>"; };
+		0D6550FA2AB859180021024B /* ExpyTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpyTableView.swift; sourceTree = "<group>"; };
 		0DD5A39E2AB4712800917C85 /* Sportano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sportano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD5A3A12AB4712800917C85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DD5A3AA2AB4712900917C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,10 +61,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D6550F82AB858C60021024B /* ExpyTableView Library */ = {
+			isa = PBXGroup;
+			children = (
+				0D6550F92AB859180021024B /* ExpyAbstractions.swift */,
+				0D6550FA2AB859180021024B /* ExpyTableView.swift */,
+			);
+			path = "ExpyTableView Library";
+			sourceTree = "<group>";
+		};
 		0DD5A3952AB4712800917C85 = {
 			isa = PBXGroup;
 			children = (
 				0DD5A3A02AB4712800917C85 /* Sportano */,
+				0D6550F82AB858C60021024B /* ExpyTableView Library */,
 				0DD5A39F2AB4712800917C85 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -208,6 +222,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D6550FC2AB859180021024B /* ExpyTableView.swift in Sources */,
+				0D6550FB2AB859180021024B /* ExpyAbstractions.swift in Sources */,
 				0DD5A3D62AB5BD3200917C85 /* ExpTableCollectionViewCell.swift in Sources */,
 				0DD5A3BB2AB4796100917C85 /* SportModel.swift in Sources */,
 				0DD5A3D42AB5B4EC00917C85 /* Colors.swift in Sources */,
